@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker pull 18fgsa/html-proofer
+
+script:
+  - docker run --rm -v $(pwd):/site 18fgsa/html-proofer --check-html --check-sri --directory-index-file /site
+  - docker run --rm -v $(pwd):/code eeacms/csslint
